@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <title>ETERNITAS</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="style.css">
+
+    <script
+      src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+      async
+    ></script>
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <div class="progress">
+      <div class="progress__bar" id="appProgressBar">
+      </div>
+    </div>
+
+    <div class="app" id="app">
+
+      <div class="title__wrapper">
+        <h1 class="title">
+          ETERNITAS
+        </h1>
+      </div>
+
+      <main>
+
+        <div class="main__content">
+          <p>
+            By utilizing the blazing fast
+            <a href="https://telos.net" target="_blank">Telos</a>
+            blockchain and abstracting its complexities with the
+            <a href="https://novusphere.io" target="_blank">Novusphere's</a>
+            UnifiedID framework, Eternitas will build decentralized and open
+            source browser games in which players truly own their data.
+          </p>
+
+          <div class="main__content__btns">
+            <a class="btn btn--color" href="#games">
+              GAMES
+            </a>
+            <a class="btn btn--transparent" href="bp.json" target="_blank">
+              BP.JSON
+            </a>
+          </div>
+        </div>
+
+        <lottie-player
+          class="main__animation"
+          src="https://assets6.lottiefiles.com/packages/lf20_8wuout7s.json"
+          background="transparent"
+          speed="1"
+          loop
+          autoplay
+        ></lottie-player>
+
+      </main>
+
+      <div class="title__wrapper" id="games">
+        <h1 class="title">
+          GAMES
+        </h1>
+      </div>
+
+      <section class="games">
+
+        <div class="game">
+          <h2>
+            States of Matter
+          </h2>
+          <p>
+            States of Matter is a PvP Card Game, featuring four card classes:
+            Solid, Liquid, Gas and Plasma. Pick your favorite playstyle, create
+            your deck and get ready to duel!
+          </p>
+          <p>
+            <i>Coming 1st of August, 2022</i>
+          </p>
+          <a
+            class="btn btn--color"
+            href="https://github.com/krlx97/states-of-matter"
+            target="_blank">
+            GITHUB
+          </a>
+        </div>
+
+      </section>
+
+      <div class="title__wrapper">
+        <h1 class="title">
+          BP HARDWARE
+        </h1>
+      </div>
+
+      <section class="hardware">
+        <lottie-player
+          class="hardware__animation"
+          src="https://assets10.lottiefiles.com/packages/lf20_lzwjunns.json"
+          background="transparent"
+          speed="1"
+          loop
+          autoplay>
+        </lottie-player>
+
+        <div class="hardware__content">
+
+          <div class="hardware__sliders">
+            <div class="hardware__slider__overlay" id="slider">
+            </div>
+
+            <button class="hardware__slider" id="testnet">
+              TESTNET
+            </button>
+            <button class="hardware__slider" id="mainnet">
+              MAINNET
+            </button>
+          </div>
+
+          <div class="hardware__sections">
+            <section class="hardware__section" id="testnetSection">
+              Coming soon...
+            </section>
+
+            <section class="hardware__section" id="mainnetSection">
+              Coming soon...
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <div class="title__wrapper">
+        <h1 class="title">
+          TEAM
+        </h1>
+      </div>
+
+      <section class="team">
+
+        <section class="team__member__wrapper">
+          <div class="team__member">
+            <span class="font--purple">Vukašin</span>
+            Dev
+          </div>
+        </section>
+
+        <section class="team__member__divider">
+        </section>
+
+        <section class="team__member__wrapper">
+          <div class="team__member">
+            <span class="font--purple">Martin</span>
+            Lore
+          </div>
+        </section>
+
+        <section class="team__member__divider">
+        </section>
+
+        <section class="team__member__wrapper">
+          <div class="team__member">
+            <span class="font--purple">Teodora</span>
+            Art
+          </div>
+        </section>
+
+        <section class="team__member__divider">
+        </section>
+
+        <section class="team__member__wrapper">
+          <div class="team__member">
+            <span class="font--purple">Dejan</span>
+            Gameplay
+          </div>
+        </section>
+
+        <section class="team__member__divider">
+        </section>
+
+        <section class="team__member__wrapper">
+          <div class="team__member">
+            <span class="font--purple">Miloš</span>
+            Dev
+          </div>
+        </section>
+
+      </section>
+
+    </div>
+  </body>
+
+</html>

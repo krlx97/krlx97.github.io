@@ -1,0 +1,318 @@
+:root {
+  --spacing-sm: 0.75em;
+  --spacing-md: 1em;
+  --spacing-lg: 1.5em;
+
+  --purple: 155, 105, 205;
+  --blue: 120, 105, 255;
+
+  --elevation-sm:
+    0 3px 1px -2px rgba(0 0 0 / 20%),
+    0 2px 2px 0 rgba(0,0,0,.14),
+    0 1px 5px 0 rgba(0,0,0,.12);
+  --elevation-md:
+    0 2px 4px -1px rgba(0,0,0,.2),
+    0 4px 5px 0 rgba(0,0,0,.14),
+    0 1px 10px 0 rgba(0,0,0,.12);
+    --elevation-lg:
+    0 5px 5px -3px rgba(0,0,0,.2),
+    0 8px 10px 1px rgba(0,0,0,.14),
+    0 3px 14px 2px rgba(0,0,0,.12);
+
+  --dark-grey: 33, 33, 33;
+  --grey: 48, 48, 48;
+  --light-grey: 66, 66, 66;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  color: white;
+  font-family: 'Exo 2', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  margin: var(--spacing-md) 0;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+h1 {
+  display: inline-block;
+  margin: var(--spacing-md) 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h2 {
+  margin: var(--spacing-md) 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+a {
+  color: rgb(var(--blue));
+}
+
+.font--purple { color: rgb(var(--purple)); }
+
+button, .btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 0;
+  border-radius: 32px;
+  color: white;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.8rem;
+}
+
+a.btn {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn--color {
+  background-image: linear-gradient(45deg, rgb(var(--purple)), rgb(var(--blue)));
+  box-shadow: var(--elevation-sm);
+}
+.btn--transparent {
+  color: rgb(var(--purple));
+  background-color: transparent;
+  /* border: 2px solid rgb(var(--purple)); */
+}
+
+.title__wrapper {
+  display: flex;
+  justify-content: center;
+}
+.title {
+  background-image: linear-gradient(
+    45deg,
+    rgb(var(--purple)),
+    rgb(var(--blue))
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+
+/* APP */
+.app {
+  flex-grow: 1;
+  padding: var(--spacing-md);
+  background-color: rgb(var(--grey));
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+}
+
+/* PROGRESS */
+.progress {
+  height: 12px;
+  width: 100%;
+  background-color: rgb(var(--dark-grey));
+  box-shadow: var(--elevation-lg);
+}
+.progress__bar {
+  height: 12px;
+  width: 0;
+  background-color: rgb(var(--purple));
+}
+
+/* MAIN */
+.main__content__btns {
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* GAMES */
+.game {
+  padding: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  background-color: rgb(var(--light-grey));
+  border-radius: 4px;
+  box-shadow: var(--elevation-md);
+}
+.game:last-child {
+  margin-bottom: 0;
+}
+
+/* HARDWARE */
+.hardware__sliders {
+  position: relative;
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(var(--dark-grey));
+  border-radius: 32px;
+  box-shadow: var(--elevation-sm);
+}
+.hardware__slider__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background-image: linear-gradient(
+    45deg,
+    rgb(var(--purple)),
+    rgb(var(--blue))
+  );
+  border-radius: 32px;
+  transition: transform 225ms ease-in-out;
+}
+.hardware__slider {
+  width: 100%;
+  padding: var(--spacing-md) 0;
+  background-color: transparent;
+  z-index: 1;
+}
+.hardware__sections {
+  /* padding: var(--spacing-sm);
+  box-sizing: border-box; */
+}
+.hardware__section {
+  display: none;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 225ms ease-in-out;
+  font-size: 0.8rem;
+}
+
+/* TEAM */
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.team__member__wrapper {
+  height: 128px;
+  width: 128px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 4px solid rgb(var(--purple));
+  box-shadow: var(--elevation-sm);
+  text-align: center;
+}
+.team__member {
+  height: 112px;
+  width: 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 4px solid rgb(64, 64, 64);
+}
+.team__member__divider {
+  height: 32px;
+  width: 4px;
+  background-color: rgb(var(--purple));
+  box-shadow: var(--elevation-md);
+}
+
+/* TABLET */
+@media (min-width: 768px) {
+  /* MAIN */
+  main { display: flex; }
+  .main__content, .main__animation { flex-basis: 50%; }
+  .main__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .main__content__btns { margin-bottom: 0; }
+
+  /* GAMES */
+  .games {
+    padding: var(--spacing-sm) 0 0 var(--spacing-sm);
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .game {
+    flex-basis: calc(50% - var(--spacing-sm));
+    padding: var(--spacing-sm);
+    margin: 0 var(--spacing-sm) var(--spacing-sm) 0;
+    background-color: rgb(66, 66, 66);
+    border-radius: 4px;
+    box-shadow: var(--elevation-md);
+    box-sizing: border-box;
+  }
+  .game:last-child {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  /* HARDWARE */
+  .hardware { display: flex; }
+  .hardware__animation, .hardware__content { flex-basis: 50%; }
+  .hardware__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hardware__sections {
+    height: 96px;
+  }
+
+  /* TEAM */
+  .team {
+    flex-direction: row;
+  }
+  .team__member__divider {
+    height: 4px;
+    width: 8px;
+  }
+}
+
+/* DESKTOP */
+@media (min-width: 1024px) {
+  body {
+    align-items: center;
+    background-color: rgb(var(--light-grey));
+  }
+  button {
+    cursor: pointer;
+    transition: box-shadow 225ms ease-in-out;
+  }
+  .btn--color:hover {
+    box-shadow: var(--elevation-md);
+    background-image: linear-gradient(
+      45deg,
+      rgb(var(--blue)),
+      rgb(var(--purple))
+    );
+  }
+  .btn--transparent:hover {
+    box-shadow: var(--elevation-md);
+  }
+
+  .app {
+    width: 1024px;
+    box-sizing: border-box;
+    box-shadow: var(--elevation-lg);
+  }
+
+  .progress {
+    width: 1024px;
+  }
+
+  .team__member__divider {
+    width: 32px;
+  }
+}
+
+
+
+
+
+/* * {
+  border: 1px solid red;
+  box-sizing: border-box;
+} */
