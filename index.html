@@ -39,6 +39,7 @@
     }
 
     body {
+      position: relative;
       margin: 0;
       height: 100vh;
       width: 100vw;
@@ -72,6 +73,38 @@
     .title {
       margin-top: var(--spacing-md);
       text-align: center;
+    }
+
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .header__main {
+      position: relative;
+      padding: var(--spacing-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(31, 31, 31);
+      box-sizing: border-box;
+      z-index: 2;
+    }
+
+    .header__menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: var(--spacing-md);
+      background-color: rgba(31, 31, 31);
+      box-sizing: border-box;
+      color: white;
+      transform: translateY(-100%);
+      z-index: 1;
+      transition: transform 250ms ease-in-out;
     }
 
     .hero {
@@ -243,9 +276,54 @@
         width: calc(3 * 320px + 4 * var(--spacing-md));
       }
     }
+
+
+
+
+    .container {
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .bar1, .bar2, .bar3 {
+      width: 32px;
+      height: 2px;
+      background-color: white;
+      margin: 4px 0;
+      transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
+    }
+
+    .change .bar1 {
+      transform: translate(0, 6px) rotate(-45deg);
+    }
+
+    .change .bar2 {
+      opacity: 0;
+    }
+
+    .change .bar3 {
+      transform: translate(0, -6px) rotate(45deg);
+    }
   </style>
 
   <body>
+    <header class="header">
+      <div class="header__main">
+        <div class="container" onclick="onToggleHamburger(this)">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+        <a class="footer__section__link" href="tel:+381641164021">
+          +381 64 116 40 21
+        </a>
+      </div>
+      <div class="header__menu" id="headerMenu">
+        <div>POCETNA</div>
+        <div>O NAMA</div>
+        <div>KONTAKT</div>
+      </div>
+    </header>
     <main class="hero">
       <div class="hero__text">
         <h1>PR Drulovka Niš</h1>
@@ -421,5 +499,16 @@
         </ul>
       </section>
     </footer>
+
+    <script>
+      const headerMenu = document.getElementById("headerMenu");
+      let isHeaderMenuVisible = false;
+
+      const onToggleHamburger = (element) => {
+        isHeaderMenuVisible = !isHeaderMenuVisible;
+        element.classList.toggle("change");
+        headerMenu.style.transform = isHeaderMenuVisible ? "translateY(0)" : "translateY(-100%)";
+      };
+    </script>
   </body>
 </html>
