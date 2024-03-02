@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternitas Games</title>
+    <script src="https://kit.fontawesome.com/7aa0d05815.js" crossorigin="anonymous"></script>
+<!-- Michroma -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+
+    <style>
+      body {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        color: #CCCCCC;
+        font: 16px/1 "Michroma";
+      }
+
+      .app {
+        position: relative;
+        background-color: rgb(15, 15, 15);
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden hidden;
+      }
+
+      a {
+        color: #CCCCCC;
+        text-decoration: none;
+      }
+
+      header {
+        /* height: 48px; */
+        width: 100%;
+        padding: 16px 128px;
+        border-bottom: 2px solid #CCCCCC;
+        background-color: rgb(15, 15, 15);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+        z-index: 5;
+      }
+      nav {
+        display: flex;
+        gap: 16px;
+        /* padding-top: 16px; */
+        /* padding-right: 48px; */
+      }
+      .header__social {
+        display: flex;
+        gap: 16px;
+      }
+
+      .trapezoid {
+        position: absolute;
+        top: 48px;
+        left: 50%;
+        height: 16px;
+        width: 50%;
+        display: flex;
+        transform: translateX(-50%);
+        z-index: 6;
+      }
+      .trapezoid__bar {
+        flex-basis: 50%;
+        border-bottom: 2px solid #CCCCCC;
+        background-color: rgb(15, 15, 15);
+        box-sizing: border-box;
+      }
+      .trapezoid__bar:first-child {
+        transform: skew(45deg) translateX(32px);
+        border-left: 2px solid #CCCCCC;
+      }
+      .trapezoid__bar:last-child {
+        transform: skew(-45deg) translateX(-32px);
+        border-right: 2px solid #CCCCCC;
+      }
+
+      button {
+        width: 256px;
+        padding: 16px 0;
+        text-align: center;
+        color: #CCCCCC;
+        font: 16px/1 "Michroma";
+        background-color: #7778FF;
+        outline: 0;
+        border: 0;
+        letter-spacing: 8px;
+        clip-path: polygon(100% 0, 100% 76%, 94% 100%, 0 100%, 0 0);
+        transition: color 333ms linear;
+      }
+
+      button:hover {
+        cursor: pointer;
+        color: white;
+      }
+      main {
+        flex-grow: 1;
+        /* display: flex;
+        flex-direction: column;
+        gap: 32px; */
+        overflow-y: scroll;
+      }
+      main::-webkit-scrollbar {
+        width: 2px;
+      }
+
+      main::-webkit-scrollbar-track {
+        /* border-radius: 8px; */
+      }
+
+      main::-webkit-scrollbar-thumb {
+        background-color: #CCCCCC;
+        /* border-radius: 8px; */
+      }
+
+      .app__hero-wrapper {
+        height: 480px;
+        width: 100%;
+        /* padding: 96px 0; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 48px;
+        
+      }
+      .app__hero {
+        width: 480px;
+        text-align: center;
+        font-size: 24px;
+        line-height: 1.333;
+      }
+
+      .app__hero__title {
+        /* position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%); */
+        font-size: 32px;
+        color: #7778FF;
+        /* font-variant: small-caps; */
+        margin-bottom: 32px;
+      }
+
+      .app__hero__partners {
+        display: flex;
+        /* flex-direction: column; */
+        gap: 64px;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .partner {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 32px;
+        padding: 16px;
+      }
+
+      .title {
+        font-size: 32px;
+        margin-bottom: 32px;
+        color: #7778FF;
+        /* font-variant: small-caps; */
+      }
+
+      .spin {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: 640px;
+        transform: translateX(-50%);
+        animation: spin 1000s linear infinite;
+      }
+
+      .our-games {
+        width: 100%;
+        padding: 64px 0;
+        /* overflow: hidden; */
+      }
+      .our-games__heading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .game {
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+      }
+      .cards {
+        position: relative;
+        height: 640px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 64px;
+        grid-row-gap: 64px;
+      }
+
+      .card-wrapper {
+        /* height: calc(960px / 2); */
+        /* flex-basis: 50%; */
+        /* box-sizing: border-box;
+        border: 1px solid red; */
+      }
+      .card {
+        position: relative;
+        height: 100%;
+        width: 320px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .card__title {
+        color: #7778FF;
+        font-size: 24px;
+        text-align: center;
+      }
+      .card__content {
+        color: #CCCCCC;
+        line-height: 1.333;
+        font-size: 12px;
+        margin-top: 24px;
+      }
+      .card-wrapper--left {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+      }
+      .cut-border__bottom, .cut-border__top {
+        position: absolute;
+        height: 64px;
+        width: 64px;
+        pointer-events: none;
+        z-index: 3;
+      }
+      .cut-border__bottom-partner, .cut-border__top-partner {
+        position: absolute;
+        height: 8px;
+        width: 8px;
+        pointer-events: none;
+        z-index: 3;
+        box-sizing: border-box;
+        transition: height 333ms linear, width 333ms linear;
+      }
+      .partner:hover {
+        cursor: pointer;
+      }
+      .partner:hover .cut-border__bottom-partner {
+        height: 100%;
+        width: 100%;
+      }
+      .partner:hover .cut-border__top-partner {
+        height: 100%;
+        width: 100%;
+      }
+      .cut-border__bottom {
+        bottom: 4px;
+        left: 4px;
+        border-bottom: 2px solid #6A6BD4;
+        border-left: 2px solid #6A6BD4;
+      }
+      .cut-border__top {
+        top: 4px;
+        right: 4px;
+        border-top: 2px solid #6A6BD4;
+        border-right: 2px solid #6A6BD4;
+      }
+      .cut-border__bottom-partner {
+        bottom: 0px;
+        right: 0px;
+        border-bottom: 1px solid #6A6BD4;
+        border-right: 1px solid #6A6BD4;
+      }
+      .cut-border__top-partner {
+        top: 0px;
+        left: 0px;
+        border-top: 1px solid #6A6BD4;
+        border-left: 1px solid #6A6BD4;
+      }
+      .mid {
+        padding: 0 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-grow: 1;
+        background-color: rgba(10, 10, 10, 0.333);
+        backdrop-filter: blur(16px);
+      }
+      .bottom, .top {
+        height: 32px;
+        width: 100%;
+        display: flex;
+        z-index: 4;
+      }
+      .bottom-skew {
+        height: 100%;
+        width: 100%;
+        transform: skew(-45deg) translateX(-14px);
+        backdrop-filter: blur(16px);
+        background-color: rgba(10, 10, 10, 0.333);
+        border-right: 4px solid #6A6BD4;
+        border-bottom: 2px solid #6A6BD4;
+        box-sizing: border-box;
+      }
+      .fix {
+        background-color: rgba(10, 10, 10, 0.333);
+        backdrop-filter: blur(16px);
+      }
+      .top-skew {
+        width: 100%;
+        height: 100%;
+        transform: skew(-45deg) translateX(14px);
+        border-top: 2px solid #6A6BD4;
+        border-left: 4px solid #6A6BD4;
+        backdrop-filter: blur(16px);
+        background-color: rgba(10, 10, 10, 0.333);
+        box-sizing: border-box;
+      }
+      .red {
+        color: rgb(65, 65, 65);
+      }
+      .green {
+        color: rgb(65, 255, 123);
+      }
+
+
+      footer {
+        border-top: 2px solid #CCCCCC;
+        padding: 16px 128px;
+        font-size: 16px;
+        /* height: 64px; */
+        background-color: #151525;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .footer_availability {
+        display: flex;
+        gap: 16px;
+      }
+      .footer__sponsors {
+        display: flex;
+        gap: 16px;
+      }
+      /* .footer__sponsors__img {
+        height: 32px;
+        width: 32px;
+        display: flex;
+        justify-content: center;
+      } */
+
+      @keyframes spin {
+        0% {transform: translateX(-50%) rotate(0);}
+        50% {transform: translateX(-50%) rotate(180deg);}
+        100% {transform: translateX(-50%) rotate(360deg);}
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app">
+
+      <div class="trapezoid">
+        <div class="trapezoid__bar"></div>
+        <div class="trapezoid__bar"></div>
+      </div>
+
+
+      <header>
+        <!-- <div>Eternitas Games</div> -->
+        <nav>
+          <a href="#about">About</a>
+          <a href="#games">Games</a>
+          <a href="#partners">Partners</a>
+        </nav>
+        <div class="header__social">
+          <i class="fa-brands fa-discord"></i>
+          <i class="fa-brands fa-x-twitter"></i>
+          <i class="fa-brands fa-github"></i>
+        </div>
+      </header>
+
+      <main>
+
+        <div class="app__hero-wrapper" id="about">
+          <div class="app__hero">
+            <div class="app__hero__title">Eternitas Games</div>
+            Utilizing the Telos blockchain to build free,
+            open source and forever online browser games in which players truly
+            own their data.
+          </div>
+        </div>
+
+        <div class="our-games" id="games">
+
+          <div style="margin-bottom: 32px; text-align: center; width: 100%; font-size: 32px;">Our games</div>
+
+          <div class="game">
+
+            <div class="our-games__heading">
+              <div class="title" >States of Matter</div>
+              <div class="app__hero__info" style="margin-bottom: 16px;">Turn based PvP card game</div>
+              <button>PLAY</button>
+            </div>
+
+            <div class="cards">
+
+              <img class="spin" src="./img.svg"/>
+
+              <div class="card-wrapper card-wrapper--left">
+                <div class="card">
+
+                  <div class="cut-border__bottom"></div>
+                  <div class="cut-border__top"></div>
+
+                  <div class="top">
+                    <div class="top-skew"></div>
+                    <div class="fix"></div>
+                  </div>
+
+                  <div class="mid">
+                    <div class="card__title">Free to play</div>
+                    <div class="card__content">No strings attached. All the cards in the game will always be available for play. No more meta decks hidden behind paywalls.</div>
+                  </div>
+
+                  <div class="bottom">
+                    <div class="fix"></div>
+                    <div class="bottom-skew"></div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="card-wrapper">
+                <div class="card">
+
+                  <div class="cut-border__bottom"></div>
+                  <div class="cut-border__top"></div>
+
+                  <div class="top">
+                    <div class="top-skew"></div>
+                    <div class="fix"></div>
+                  </div>
+
+                  <div class="mid">
+                    <div class="card__title">About</div>
+                    <div class="card__content">There are five card classes in states of matter, each with it’s own diverse set of perks and utilities. Build a deck that fits your playstyle and start dueling other players</div>
+                  </div>
+
+                  <div class="bottom">
+                    <div class="fix"></div>
+                    <div class="bottom-skew"></div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="card-wrapper card-wrapper--left">
+                <div class="card">
+                  <div class="cut-border__bottom"></div>
+                  <div class="cut-border__top"></div>
+
+                  <div class="top">
+                    <div class="top-skew"></div>
+                    <div class="fix"></div>
+                  </div>
+
+                  <div class="mid">
+                    <div class="card__title">Cosmetics</div>
+                    <div class="card__content">You are rewarded with tokens whenever you complete any of the many tasks the game has. You can then use those tokens to craft various cosmetics for the cards and your profile.</div>
+                  </div>
+
+                  <div class="bottom">
+                    <div class="fix"></div>
+                    <div class="bottom-skew"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-wrapper">
+                <div class="card">
+                  <div class="cut-border__bottom"></div>
+                  <div class="cut-border__top"></div>
+
+                  <div class="top">
+                    <div class="top-skew"></div>
+                    <div class="fix"></div>
+                  </div>
+
+                  <div class="mid">
+                  <div class="card__title">Forever online</div>
+                  <div class="card__content">The entire game is running on chain, and since blockchains have no downtime, the game will never go offline*.</div>
+</div>
+
+                  <div class="bottom">
+                    <div class="fix"></div>
+                    <div class="bottom-skew"></div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="our-games" id="partners">
+          <div style="margin-bottom: 32px; text-align: center; width: 100%; font-size: 32px;">Our partners</div>
+          <div class="game">
+
+            <div class="our-games__heading">
+              <!-- <div class="title">Our partners</div> -->
+              <div class="app__hero__partners">
+                <div class="partner">
+                  <div class="cut-border__bottom-partner"></div>
+                  <div class="cut-border__top-partner"></div>
+                  <img src="./telos.png" alt="TelosZero"/> TelosZero
+                </div>
+                <div class="partner">
+<div class="cut-border__bottom-partner"></div>
+                  <div class="cut-border__top-partner"></div>
+                  <img src="./telosevm.png" alt="TelosEVM"/> TelosEVM
+                </div>
+                <div class="partner">
+<div class="cut-border__bottom-partner"></div>
+                  <div class="cut-border__top-partner"></div>
+                  <img height="32" src="./Telos Culture Logo.webp" alt="CultureBlock"/> CultureBlock
+                </div>
+                <div class="partner">
+<div class="cut-border__bottom-partner"></div>
+                  <div class="cut-border__top-partner"></div>
+Tekika
+
+</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+
+      <footer>
+
+        <div class="footer_availability">
+          <i class="fa-brands fa-chrome green"></i>
+          <i class="fa-solid fa-desktop green"></i>
+          <i class="fa-solid fa-laptop green"></i>
+          <i class="fa-solid fa-tablet red"></i>
+          <i class="fa-solid fa-mobile red"></i>
+        </div>
+
+        <div class="footer__sponsors">
+          <div>TelosZero</div>
+          <div>TelosEVM</div>
+          <div>CultureBlock</div>
+          <div>Tekika</div>
+        </div>
+
+      </footer>
+
+    </div>
+  </body>
+</html>
