@@ -19,9 +19,11 @@
       }
 
       body {
+        position: relative;
         margin: 0;
         color: #CCCCCC;
         font: 16px/1 "Michroma";
+        background-color: rgb(15, 15, 15);
       }
 
       .app {
@@ -30,7 +32,11 @@
         width: 100vw;
         display: flex;
         flex-direction: column;
-        background-color: rgb(32, 32, 32);
+        background-color: rgba(32, 32, 32, 0.666);
+        /* background-image: url(./bg.svg);
+        background-position: center;
+        background-repeat: no-repeat; */
+        z-index: 1;
       }
 
       a {
@@ -46,7 +52,7 @@
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid #CCCCCC;
-        background-color: rgb(16, 16, 16);
+        /* background-color: rgb(16, 16, 16); */
       }
 
       .menu {
@@ -201,7 +207,8 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
         border: 1px solid rgb(var(--primary));
         clip-path: polygon(256px 208px, 208px 256px, 0px 256px, 0px 48px, 48px 0px, 256px 0px);
         /* clip-path: polygon(12% 0, 100% 0, 100% 82%, 85% 100%, 0 100%, 0 15%); */
-        background-color: rgb(15, 15, 15);
+        /* background-color: transparent; */
+        backdrop-filter: blur(16px);
 
         /* backdrop-filter: blur(16px); */
         /* overflow: hidden; */
@@ -335,7 +342,25 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
         color: rgb(var(--success));
       }
 
+      .bgdd {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .bgdd-inner {
+        overflow: hidden;
+      }
 
+      .bgdd__img {
+        height: 320px;
+        animation: rotate 333s linear infinite;
+        /* transform-origin: center; */
+      }
 
       .nav-desktop {
         display: none;
@@ -359,6 +384,12 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
           gap: 16px;
         }
 
+        .bgdd__img {
+          /*height: 638px;
+          width: 638px;*/
+          height: auto;
+        }
+
         .nav-mobile {
           display: none;
         }
@@ -369,14 +400,30 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
       }
 
       @media only screen and (min-width: 1280px) {
+.bgdd__img {
+          /* height: 638px;
+          width: 638px; */
+          height: auto;
+        }
         .game__cards, .partners {
           flex-direction: row;
         }
+      }
+
+      @keyframes rotate {
+        from {transform: rotate(0deg);}
+        to {transform: rotate(360deg);}
       }
     </style>
   </head>
 
   <body>
+    <div class="bgdd">
+      <div class="bgdd-inner" id="bgd">
+        <img class="bgdd__img" src="./bg.png" alt="bgd" >
+      </div>
+    </div>
+
     <div class="app">
 
       <div class="menu" id="menu">
@@ -417,7 +464,7 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
           <div class="page-inner">
             <div class="page__title">Eternitas Games</div>
             <div class="page__content">
-              We're using the Telos blockchain to create browser games that are
+              We're creating browser games that are
               free, open source, always online, and where players truly own
               their data.
             </div>
@@ -487,7 +534,7 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
 
                     <div class="card__title">PLAY TO EARN</div>
                     <div class="card__content">
-                      You are rewarded with tokens for maintaining a top position on the leaderboards, achieving high rankings, completing daily tasks, and leveling up. You can then spend those tokens to craft various cosmetics for your cards and your game profile.
+                      You are rewarded with tokens for maintaining a top position on the leaderboards, achieving high rankings, completing tasks, and leveling up. You can then spend those tokens to craft various cosmetics for your cards and profile.
                     </div>
                   </div>
 
@@ -563,6 +610,7 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
       let gamesMenuLink;
       let missionMenuLink;
       let partnersMenuLink;
+      let bgd;
 
       document.body.onload = () => {
         aboutElem = document.getElementById("about");
@@ -581,6 +629,19 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
         gamesMenuLink = document.getElementById("gamesMenuLink");
         missionMenuLink = document.getElementById("missionMenuLink");
         partnersMenuLink = document.getElementById("partnersMenuLink");
+        bgd = document.getElementById("bgd");
+      };
+
+      document.body.onmousemove = (e) => {
+        const centerX = document.body.offsetWidth / 2;
+        const centerY = document.body.offsetHeight / 2;
+        const offX = e.pageX - centerX;
+        const offY = e.pageY - centerY;
+        const speed = 0.01;
+        const x = -(offX * speed);
+        const y = -(offY * speed);
+
+        bgd.style.transform = `translateX(${x}px) translateY(${y}px)`;
       };
 
       const onMenu = () => {
