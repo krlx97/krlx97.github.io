@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eternitas Games</title>
+    <link rel="icon" type="image/png" href="favicon.png"/>
+
     <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/7aa0d05815.js" crossorigin="anonymous"></script>
     <!-- Michroma font -->
@@ -24,6 +26,7 @@
         color: #CCCCCC;
         font: 16px/1 "Michroma";
         background-color: rgb(15, 15, 15);
+        overflow: hidden;
       }
 
       .app {
@@ -37,6 +40,7 @@
         background-position: center;
         background-repeat: no-repeat; */
         z-index: 1;
+        overflow: hidden;
       }
 
       a {
@@ -46,7 +50,9 @@
       }
 
       header {
+        height: 64px;
         padding: 16px;
+        box-sizing: border-box;
         /* flex-grow: 2; */
         display: flex;
         align-items: center;
@@ -57,28 +63,28 @@
 
       .menu {
         position: fixed;
-        top: 48px;
-        left: 0;
+        top: 64px;
+        right: 0;
         height: 192px;
         width: 192px;
         border: 1px solid #CCCCCC;
-        border-left: 0;
+        border-right: 0;
         border-top: 0;
         display: flex;
         flex-direction: column;
         gap: 16px;
         transition: transform 333ms cubic-bezier(0.25, 1, 0.5, 1);
         background-color: rgb(15, 15, 15);
-        transform: translateX(-100%);
+        transform: translateX(100%);
         padding: 16px;
         box-sizing: border-box;
         z-index: 1;
-        clip-path: polygon(192px 0px, 192px 144px, 144px 192px, 0px 192px, 0px 0px);
+        clip-path: polygon(100% 0%, 100% 100%, 25% 100%, 0% 75%, 0% 0%);
       }
 
       .header__social {
         display: flex;
-        gap: 16px;
+        gap: 32px;
       }
 
       button {
@@ -139,9 +145,9 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
     width: 4px;
   }
 
-  .page::-webkit-scrollbar-track {
-    /* border-radius: 8px; */
-  }
+  /* .page::-webkit-scrollbar-track {
+    border-radius: 8px;
+  } */
 
   .page::-webkit-scrollbar-thumb {
     background-color: #CCCCCC;
@@ -313,10 +319,10 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
       .bottom-skew-2 {
         position: absolute;
         bottom: -1px;
-        right: 23px;
+        left: -23px;
         width: 48px;
         height: 48px;
-        transform: skew(-45deg);
+        transform: skew(45deg);
         border-right: 2px solid #CCCCCC;
         box-sizing: border-box;
         pointer-events: none;
@@ -335,8 +341,8 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
         /* z-index: 10; */
       }
       .red {
-        color: rgb(65, 65, 65);
-        /* color: rgb(255, 65, 65); */
+        /* color: rgb(65, 65, 65); */
+        color: rgb(255, 65, 65);
       }
       .green {
         color: rgb(var(--success));
@@ -366,9 +372,11 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
         display: none;
       }
       .nav-mobile {
+        width: 100%;
         display: flex;
         align-items: center;
-        gap: 16px;
+        justify-content: space-between;
+        /* gap: 16px; */
       }
       .nav-mobile__title {
         color: rgb(var(--primary));
@@ -380,8 +388,12 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
 
       @media only screen and (min-width: 640px) {
          .nav-desktop {
+          width: 100%;
+          padding: 0 128px;
           display: flex;
-          gap: 16px;
+          align-items: center;
+          justify-content: space-between;
+          /* gap: 16px; */
         }
 
         .bgdd__img {
@@ -437,24 +449,26 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
       <header>
 
         <div class="nav-mobile">
-          <div class="nav-mobile__menu-icon" onclick="onMenu()">
-            <i class="fa-solid fa-bars" id="hamicon"></i>
+          <img src="eternitas.png" alt="Logo"/>
+
+          <div style="display: flex; gap: 16px;">
+            <div class="nav-mobile__title" id="currentPage">Home</div>
+            <div class="nav-mobile__menu-icon" onclick="onMenu()">
+              <i class="fa-solid fa-bars" id="hamicon"></i>
+            </div>
           </div>
-          <div class="nav-mobile__title" id="currentPage">Home</div>
         </div>
 
         <nav class="nav-desktop">
-          <a class="active" id="aboutLink" onclick="onAbout(false)">Home</a>
-          <a id="missionLink" onclick="onMission(false)">Mission</a>
-          <a id="gamesLink" onclick="onGames(false)">Games</a>
-          <a id="partnersLink" onclick="onPartners(false)">Partners</a>
-        </nav>
+          <img src="eternitas.png" alt="Logo"/>
 
-        <div class="header__social">
-          <a href="https://discord.gg/wD9K74V8mT" target="_blank"><i class="fa-brands fa-discord"></i></a>
-          <a href="https://twitter.com/eternitas_som" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="https://github.com/krlx97/" target="_blank"><i class="fa-brands fa-github"></i></a>
-        </div>
+          <div style="display: flex; gap: 16px;">
+            <a class="active" id="aboutLink" onclick="onAbout(false)">Home</a>
+            <a id="missionLink" onclick="onMission(false)">Mission</a>
+            <a id="gamesLink" onclick="onGames(false)">Games</a>
+            <a id="partnersLink" onclick="onPartners(false)">Partners</a>
+          </div>
+        </nav>
 
       </header>
 
@@ -538,6 +552,11 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
                     </div>
                   </div>
 
+                </div>
+                <div class="header__social">
+                  <a href="https://discord.gg/wD9K74V8mT" target="_blank"><i class="fa-brands fa-discord fa-2x"></i></a>
+                  <a href="https://twitter.com/eternitas_som" target="_blank"><i class="fa-brands fa-x-twitter fa-2x"></i></a>
+                  <a href="https://github.com/krlx97/states-of-matter" target="_blank"><i class="fa-brands fa-github fa-2x"></i></a>
                 </div>
 
                 <div class="game__platforms">
@@ -655,7 +674,7 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
           hamiconElem.classList.add("fa-bars");
         }
 
-        document.getElementById("menu").style.transform = `translate(${isMenuToggled ? "0" : "-100%"})`;
+        document.getElementById("menu").style.transform = `translate(${isMenuToggled ? "0" : "100%"})`;
       };
 
       const clear = (isMobile) => {
@@ -678,7 +697,7 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
         aboutMenuLink.classList.add("active");
         if (isMobile) { onMenu(); }
         currentPageElem.innerText = "Home";
-        mainElem.scrollTo({behavior: "smooth", top: aboutElem.offsetTop - 49});
+        mainElem.scrollTo({behavior: "smooth", top: aboutElem.offsetTop - 64});
       };
       const onGames = (isMobile) => {
         clear(isMobile);
@@ -686,7 +705,7 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
         gamesMenuLink.classList.add("active");
         if (isMobile) { onMenu(); }
         currentPageElem.innerText = "Our games";
-        mainElem.scrollTo({behavior: "smooth", top: gamesElem.offsetTop - 49});
+        mainElem.scrollTo({behavior: "smooth", top: gamesElem.offsetTop - 64});
       };
       const onPartners = (isMobile) => {
         clear(isMobile);
@@ -694,7 +713,7 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
         partnersMenuLink.classList.add("active");
         if (isMobile) { onMenu(); }
         currentPageElem.innerText = "Our partners";
-        mainElem.scrollTo({behavior: "smooth", top: partnersElem.offsetTop - 49});
+        mainElem.scrollTo({behavior: "smooth", top: partnersElem.offsetTop - 64});
       };
       const onMission = (isMobile) => {
         clear(isMobile);
@@ -702,7 +721,7 @@ clip-path: polygon(192px 0px, 192px 24px, 168px 48px, 0px 48px, 0px 0px);
         missionMenuLink.classList.add("active");
         if (isMobile) { onMenu(); }
         currentPageElem.innerText = "Our mission";
-        mainElem.scrollTo({behavior: "smooth", top: missionElem.offsetTop - 49});
+        mainElem.scrollTo({behavior: "smooth", top: missionElem.offsetTop - 64});
       };
     </script>
   </body>
